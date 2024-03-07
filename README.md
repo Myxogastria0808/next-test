@@ -1,5 +1,9 @@
 # Next.js のテスト環境構築
 
+## チートシート
+
+[https://qiita.com/tasty_uni/items/76c6197d7b8ac6e784eb](https://qiita.com/tasty_uni/items/76c6197d7b8ac6e784eb)
+
 ## 参考サイト
 
 [https://qiita.com/masakiwakabayashi/items/204ed2b32254bbc9a5c1](https://qiita.com/masakiwakabayashi/items/204ed2b32254bbc9a5c1)
