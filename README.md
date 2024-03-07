@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js のテスト環境構築
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```batch
+npx create-next-app --ts
+yarn
+wsl rm -rf package-lock.json
+yarn add jest jest-environment-jsdom
+yarn add @testing-library/user-event @testing-library/react @testing-library/jest-dom
+yarn add ts-jest @types/jest typescript@latest ts-node@latest
+npm init jest@latest
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### `npm init jest@latest`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+√ Would you like to use Jest when running "test" script in "package.json"? ... yes
+√ Would you like to use Typescript for the configuration file? ... yes
+√ Choose the test environment that will be used for testing » jsdom (browser-like)
+√ Do you want Jest to add coverage reports? ... no
+√ Which provider should be used to instrument code for coverage? » v8
+√ Automatically clear mock calls, instances, contexts and results before every test? ... no
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+✏️  Modified C:\Users\admin\Documents\work-space\javascript\Next\next-test\package.json
 
-## Learn More
+📝  Configuration file created at C:\Users\admin\Documents\work-space\javascript\Next\next-test\jest.config.ts
+```
 
-To learn more about Next.js, take a look at the following resources:
+## `jest.config.ts`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```typescript
+import type { Config } from "jest";
+import nextJest from "next/jest.js";
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+//* nextJest({})
+//Next.jsのためのJest設定を生成する関数
+const createJestConfig = nextJest({
+  // JestがNext.jsの設定を読み込むためのディレクトリを指定
+  dir: "./",
+});
 
-## Deploy on Vercel
+//Jestのカスタム設定オブジェクト
+const customJestConfig: Config = {
+  coverageProvider: "v8",
+  moduleDirectories: ["node_modules", "<rootDir>/"],
+  testEnvironment: "jest-environment-jsdom",
+};
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+export default createJestConfig(customJestConfig);
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## `package.json`
+
+```json
+{
+  ...
+  "scripts": {
+    ...
+    "test": "jest",
+    "test:watch": "jest --watch"
+  }
+  ...
+}
+```
+
+## ディレクトリ構造
+
+※**test**ディレクトリにテストのプログラムを書いたファイルを入れる
+
+```batch
+src
+ └─app
+    │  favicon.ico
+    │  globals.css
+    │  layout.tsx
+    │  page.module.css
+    │  page.tsx
+    │
+    └─__test__
+        page.test.tsx
+```
