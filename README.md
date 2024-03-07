@@ -67,8 +67,8 @@ export default createJestConfig(customJestConfig);
 ```json
 {
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "jest --verbose",
+    "test:watch": "jest --watch --verbose"
   }
 }
 ```
