@@ -1,5 +1,15 @@
 # Next.js のテスト環境構築
 
+## 参考サイト
+
+[https://qiita.com/masakiwakabayashi/items/204ed2b32254bbc9a5c1](https://qiita.com/masakiwakabayashi/items/204ed2b32254bbc9a5c1)
+
+[https://zenn.dev/jinku/articles/f7e1279798b879](https://zenn.dev/jinku/articles/f7e1279798b879)
+
+[https://qiita.com/yusei53/items/a8e397e856cc96e7c329](https://qiita.com/yusei53/items/a8e397e856cc96e7c329)
+
+[https://nextjs.org/docs/app/building-your-application/testing/jest](https://nextjs.org/docs/app/building-your-application/testing/jest)
+
 ```batch
 npx create-next-app --ts
 yarn
@@ -52,19 +62,16 @@ export default createJestConfig(customJestConfig);
 
 ```json
 {
-  ...
   "scripts": {
-    ...
     "test": "jest",
     "test:watch": "jest --watch"
   }
-  ...
 }
 ```
 
 ## ディレクトリ構造
 
-※**test**ディレクトリにテストのプログラムを書いたファイルを入れる
+※`__test__`ディレクトリにテストのプログラムを書いたファイルを入れる
 
 ```batch
 src
